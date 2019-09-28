@@ -7,4 +7,5 @@ public class Mage extends Fighter{
 		// TODO Auto-generated constructor stub
 	}
 
+	
 }
