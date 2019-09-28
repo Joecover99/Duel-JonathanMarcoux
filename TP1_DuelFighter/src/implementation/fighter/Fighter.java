@@ -16,7 +16,7 @@ public class Fighter implements IFighter {
 	
 	//il va falloir faire un objet avec le nom au complet
 	//Il doit avoir un nom et des aptitude
-	public Fighter(String name, int id, Aptitude aptitude ) {
+	public Fighter(String name, int id ) {
 		this.name = name;
 		this.id = id;
 		this.aptitude = aptitude;
@@ -33,7 +33,8 @@ public class Fighter implements IFighter {
 	public Aptitude getAptitude() {
 		return this.aptitude;
 	}	
-	public int getStrength() {
+	
+/*	public int getStrength() {
 		return this.strenght;
 	}
 	
@@ -47,7 +48,7 @@ public class Fighter implements IFighter {
 	
 	public int getConcentration() {
 		return this.concentration;
-	}
+	}*/
 }
 
 /*
