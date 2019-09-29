@@ -4,10 +4,12 @@ import abstracts.fighter.IAptitude;
 
 public class Aptitude implements IAptitude {
 	
-	private int strenght = 25;
-	private int dexterity = 25;
-	private int intelligence = 25;
-	private int concentration = 25;
+	private int strenght;
+	private int dexterity;
+	private int intelligence;
+	private int concentration;
+	private boolean isOver = true;
+	private boolean isInTheRange = false;
 	
 	public Aptitude(int strenght, int dexterity, int intelligence, int concentration) {
 		this.strenght = strenght;
@@ -30,5 +32,13 @@ public class Aptitude implements IAptitude {
 	
 	public int getConcentration() {
 		return this.concentration;
+	}
+	
+	
+	private boolean aptitudeIsOverTheMaxCapacity(){
+		if(strenght + dexterity + intelligence + concentration <= 100){
+			return isInTheRange;
+		}
+		return isOver;
 	}
 }

@@ -1,5 +1,6 @@
 package implementation.fighter;
 
+
 //import java.util.ArrayList;
 
 import abstracts.fighter.IFighter;
@@ -7,19 +8,22 @@ import abstracts.fighter.IFighter;
 public class Fighter implements IFighter {
 	private String name;
 	private int id;
-	/*private int strenght;
+	private int numberOfHp = 200;
+	private int strenght;
 	private int dexterity;
 	private int intelligence;
-	private int concentration;*/
+	private int concentration;
 	Aptitude aptitude; 
 
 	
 	//il va falloir faire un objet avec le nom au complet
 	//Il doit avoir un nom et des aptitude
-	public Fighter(String name, int id ) {
+	public Fighter(String name, int id, int numberOfHp) {
 		this.name = name;
 		this.id = id;
-		this.aptitude = aptitude;
+		this.numberOfHp = numberOfHp;
+		//this.aptitude = aptitude;
+		
 	}
 
 	public String getName() {
@@ -30,9 +34,17 @@ public class Fighter implements IFighter {
 		return this.id;
 	}
 	
+	public int getNbOfHp(){
+		numberOfHp = numberOfHp - (strenght + dexterity + intelligence + concentration);
+		return numberOfHp;
+	}
 	public Aptitude getAptitude() {
 		return this.aptitude;
-	}	
+	}
+	
+
+		
+	}
 	
 /*	public int getStrength() {
 		return this.strenght;
@@ -49,7 +61,6 @@ public class Fighter implements IFighter {
 	public int getConcentration() {
 		return this.concentration;
 	}*/
-}
 
 /*
 Pour tous les combattants :
