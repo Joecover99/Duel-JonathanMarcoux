@@ -15,10 +15,22 @@ public abstract class Fighter implements IFighter {
 	private int intelligence;
 	private int concentration;
 	protected Aptitude aptitude; 
+	//public int TOO_MUCH_STRENGHT = 40;
+
+	public static int MIN_STRENGHT = 1;
+	public static int MIN_DEXTERITY = 1;
+	public static int MIN_INTELLIGENCE = 1;
+	public static int MIN_CONCENTRATION = 1;
 
 	
-	//il va falloir faire un objet avec le nom au complet
-	//Il doit avoir un nom et des aptitude
+	public static int MAX_STRENGHT = 40;
+	public static int MAX_DEXTERITY = 40;
+	public static int MAX_INTELLIGENCE = 40;
+	public static int MAX_CONCENTRATION = 40;
+	
+	public static int STRENGHT_TOO_LOW = 30;
+	
+
 	public Fighter(String name, int numberOfHp) {
 		this.name = name;
 		this.numberOfHp = numberOfHp;
@@ -34,7 +46,6 @@ public abstract class Fighter implements IFighter {
 		numberOfHp = numberOfHp - (strenght + dexterity + intelligence + concentration);
 		return numberOfHp;
 	}	
-
 }
 	
 /*

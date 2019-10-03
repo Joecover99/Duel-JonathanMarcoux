@@ -12,12 +12,11 @@ import implementation.fighter.Mage;
 import implementation.fighter.Warrior;
 
 public class FighterTest {
+	private static final String TOO_MUCH_STRENGHT = null;
 	final private String ANY_NAME = "joe";
-	final private int ANY_ID = 1;
 	final private int ANY_NBOFHP = 200;
 	final private int ANY_STRENGHT = 25;
 	final private int MAX_WARRIOR_STRENGHT = 31;
-	final private int TOO_MUCH_STRENGHT = Warrior.maxStrenght; 
 
 	@Test
 	public void When_FighterIsCreated_Then_NameIsInitialize(){
@@ -27,16 +26,6 @@ public class FighterTest {
         //Assert
         String EXPECTED_NAME = ANY_NAME;
         assertEquals(EXPECTED_NAME,fighter.getName());  
-	}
-	
-	@Test
-	public void When_FighterIsCreated_Then_IdIsInitialize(){
-        //Arrange
-		IFighter fighter = new Warrior(ANY_NAME, ANY_NBOFHP);
-
-        //Assert
-        int EXPECTED_ID = ANY_ID;
-        assertEquals(EXPECTED_ID,fighter.getFighterId());  
 	}
 	
 	@Test
@@ -73,6 +62,27 @@ public class FighterTest {
         int EXPECTED_STRENGHT = MAX_WARRIOR_STRENGHT;
         assertEquals(EXPECTED_STRENGHT,actualStrenght);  
 	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void When_FighterIsCreated_Then_TooMuchStrenghtisReturned(){
+        //Arrange
+		//final int TOO_MUCH_STRENGHT = Warrior.maxStrenght + 1;
+		IFighter fighter = new Warrior(ANY_NAME, ANY_NBOFHP);
+
+		//act
+		fighter.getStrength();
+	}
+	/*@Test (expected = RuntimeException.class)
+	public void startEngineWhenEngineAlreadyStarted_ShouldThrowRuntimeException() {
+		MotorStub motorStub = new MotorStub();
+		motorStub.started = true;
+		Car car = new Car(motorStub);
+		
+		car.startEngine();
+		
+		//car.startEngine(); //Pas besoin de démarrer la voiture une seconde fois car on utilise le MotorStub.
+	}*/
+	
 	
 
 }
