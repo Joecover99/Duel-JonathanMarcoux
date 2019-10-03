@@ -1,26 +1,26 @@
 package implementation.fighter;
 
 
+import abstracts.fighter.IAptitude;
+
 //import java.util.ArrayList;
 
 import abstracts.fighter.IFighter;
 
-public class Fighter implements IFighter {
+public abstract class Fighter implements IFighter {
 	private String name;
-	private int id;
 	private int numberOfHp = 200;
 	private int strenght;
 	private int dexterity;
 	private int intelligence;
 	private int concentration;
-	Aptitude aptitude; 
+	protected Aptitude aptitude; 
 
 	
 	//il va falloir faire un objet avec le nom au complet
 	//Il doit avoir un nom et des aptitude
-	public Fighter(String name, int id, int numberOfHp) {
+	public Fighter(String name, int numberOfHp) {
 		this.name = name;
-		this.id = id;
 		this.numberOfHp = numberOfHp;
 		//this.aptitude = aptitude;
 		
@@ -29,39 +29,14 @@ public class Fighter implements IFighter {
 	public String getName() {
 		return name;
 	}
-
-	public int getFighterId() {
-		return this.id;
-	}
 	
 	public int getNbOfHp(){
 		numberOfHp = numberOfHp - (strenght + dexterity + intelligence + concentration);
 		return numberOfHp;
-	}
-	public Aptitude getAptitude() {
-		return this.aptitude;
-	}
-	
+	}	
 
-		
-	}
+}
 	
-/*	public int getStrength() {
-		return this.strenght;
-	}
-	
-	public int getDexterity() {
-		return this.dexterity;
-	}
-	
-	public int getIntelligence() {
-		return this.intelligence;
-	}
-	
-	public int getConcentration() {
-		return this.concentration;
-	}*/
-
 /*
 Pour tous les combattants :
 		force + dextérité + intelligence + concentration <= 100

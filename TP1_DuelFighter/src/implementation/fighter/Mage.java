@@ -8,31 +8,30 @@ public class Mage extends Fighter{
 	//private int maxStrenght = 40;
 	//private int maxConcentrationFighter = 10;
 	
-	public Mage(String name, int id, int numberOfHp) {
-		super(name, id, numberOfHp);
+	public Mage(String name, int numberOfHp) {
+		super(name, numberOfHp);
 		// TODO Auto-generated constructor stub
 	}
-	//intelligence >= max(force, dextérité) + 15
-	//concentration >= max(force, dextérité) + 15 
-	public float getStrength() {
-		return this.strenght;
+
+	public int getStrength() {
+		return this.aptitude.strenght;
 	}
 	
 	public float getDexterity() {
-		return this.dexterity;
+		return this.aptitude.dexterity;
 	}
 	
 	public int getIntelligence() {
 		if(intelligence >= strenght + dexterity + 15){
 		return this.intelligence;
 		}
-		return this.intelligence;
+		return this.aptitude.intelligence;
 	}
 	
 	public int getConcentration() {
 		if(intelligence >= strenght + dexterity + 15){
-		return this.concentration;
+		return this.aptitude.concentration;
 		}
-		return this.concentration;
+		return this.aptitude.concentration;
 	}
 }

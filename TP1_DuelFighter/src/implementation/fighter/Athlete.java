@@ -1,29 +1,31 @@
 package implementation.fighter;
 
+//import exception.fighter.IllegalAptitudeLevelException;
+
+//import Employee.src.implementation.employee.IllegalInitialSalaryException;
+
 public class Athlete extends Fighter{
-	private int strenght = 20;
-	private int dexterity = 20;
-	private int intelligence = 20;
-	private int concentration = 20;
+	public final static int MINIMAL_LEVEL = 20;
 	
-	public Athlete(String name, int id, int numberOfHp) {
-		super(name, id, numberOfHp);
+	public Athlete(String name, int numberOfHp) {
+		super(name, numberOfHp);
 		// TODO Auto-generated constructor stub
 	}
 	//force >= 20 dextérité >= 20 intelligence >= 20 concentration >= 20 
 	public int getStrength() {
-		return this.strenght;
+		//if(strenght < 20) throw new IllegalAptitudeLevelException(IllegalAptitudeLevelException.APTITUDE_LEVEL_TOO_LOW);
+		return this.aptitude.strenght;
 	}
 	
 	public int getDexterity() {
-		return this.dexterity;
+		return this.aptitude.dexterity;
 	}
 	
 	public int getIntelligence() {
-		return this.intelligence;
+		return this.aptitude.intelligence;
 	}
 	
 	public int getConcentration() {
-		return this.concentration;
+		return this.aptitude.concentration;
 	}
 }

@@ -5,24 +5,24 @@ public class Warrior extends Fighter{
 	private int dexterity = 21;
 	private int intelligence = 11;
 	private int concentration = 1;
-	private int maxStrenght = 40;
+	public static int maxStrenght = 40;
 	private int maxConcentrationFighter = 10;
 	
-	public Warrior(String name, int id, int numberOfHp) {
-		super(name, id, numberOfHp);
+	public Warrior(String name, int numberOfHp) {
+		super(name, numberOfHp);
 		// TODO Auto-generated constructor stub
 	}
 	//force >= dextérité + 10 >= intelligence + 10 >= concentration 
 	public int getStrength() {
 		if(strenght >= maxStrenght){
-		return this.strenght;
+		return this.aptitude.strenght;
 		}
 		return this.strenght;
 	}
 	
 	public int getDexterity() {
 		if(dexterity >= intelligence + 10){
-		return this.dexterity;
+		return this.aptitude.dexterity;
 		}
 		
 		return this.dexterity;
@@ -30,9 +30,9 @@ public class Warrior extends Fighter{
 	
 	public int getIntelligence() {
 		if(intelligence >= concentration + 10){
-		return this.intelligence;
+		return this.aptitude.intelligence;
 		}
-		return this.intelligence;
+		return this.aptitude.intelligence;
 	}
 	
 	public int getConcentration() {

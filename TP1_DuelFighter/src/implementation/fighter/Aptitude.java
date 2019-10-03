@@ -4,10 +4,10 @@ import abstracts.fighter.IAptitude;
 
 public class Aptitude implements IAptitude {
 	
-	private int strenght;
-	private int dexterity;
-	private int intelligence;
-	private int concentration;
+	int strenght;
+	int dexterity;
+	int intelligence;
+	int concentration;
 	private boolean isOver = true;
 	private boolean isInTheRange = false;
 	
@@ -35,6 +35,7 @@ public class Aptitude implements IAptitude {
 	}
 	
 	
+	@SuppressWarnings("unused")
 	private boolean aptitudeIsOverTheMaxCapacity(){
 		if(strenght + dexterity + intelligence + concentration <= 100){
 			return isInTheRange;
