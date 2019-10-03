@@ -10,14 +10,20 @@ import exception.fighter.IllegalAptitudeLevelIsLessThenMinLevelForAthlete;
 public class Athlete extends Fighter{
 	public final static int MINIMAL_LEVEL = 20;
 	
-	public Athlete(String name, int numberOfHp, IAptitude aptitude) throws IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
-		super(name, numberOfHp, aptitude);
+	public Athlete(String name, int numberOfHp, int strenght, int dexterity, int intelligence, int concentration) throws IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+		super( name, numberOfHp, strenght, dexterity, intelligence, concentration);
 		this.validateAthleteAptitude();
 	}
 	
 	@Override
 	public int getStrength() {
-		return this.aptitude.getStrength();
+		return this.strenght;
+	}
+	
+	@Override
+	public int getNbOfHp() {
+		// TODO Auto-generated method stub
+		return this.numberOfHp;
 	}
 
 	private void validateAthleteAptitude() throws IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
@@ -33,6 +39,8 @@ public class Athlete extends Fighter{
 		
 		if(aptitude.getConcentration() < MINIMAL_LEVEL) throw new IllegalAptitudeLevelIsLessThenMinLevelForAthlete();	
 	}
+
+
 	
 
 }

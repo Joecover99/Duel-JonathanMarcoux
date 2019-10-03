@@ -18,13 +18,14 @@ import exception.fighter.IllegalStrenghtValueIsEqualOrUnderZero;
 
 public abstract class Fighter implements IFighter {
 	
+	public static int INITIAL_NUMBER_OF_HP = 200;
 	private String name;
-	private int numberOfHp = 200;
-	private int strenght;
-	private int dexterity;
-	private int intelligence;
-	private int concentration;
+	protected int numberOfHp = 200;
 	protected IAptitude aptitude; 
+	int strenght;
+	int dexterity;
+	int intelligence;
+	int concentration;
 	//public int TOO_MUCH_STRENGHT = 40;
 
 	
@@ -41,21 +42,43 @@ public abstract class Fighter implements IFighter {
 	public static int MAX_APTITUDE = 100;
 	
 
-	public Fighter(String name, int numberOfHp, IAptitude aptitude) {
+	public Fighter(String name, int numberOfHp, int strenght, int dexterity, int intelligence, int concentration) {
 		this.name = name;
 		this.numberOfHp = numberOfHp;
-		this.aptitude = aptitude;
-		//this.aptitude = aptitude;
+		this.strenght = strenght;
+		this.dexterity = dexterity;
+		this.intelligence = intelligence;
+		this.concentration = concentration;
 	}
 
 	public String getName() {
 		return name;
 	}
 	
-	public int getNbOfHp(){
-		numberOfHp = numberOfHp - (strenght + dexterity + intelligence + concentration);
-		return numberOfHp;
-	}	
+	public int getNumberOfHp() {
+		return this.numberOfHp;
+	}
+	
+	public void CalculateInitialNbOfHp(){
+		this.numberOfHp = INITIAL_NUMBER_OF_HP - (aptitude.getStrength() + aptitude.getDexterity() + aptitude.getIntelligence() + aptitude.getConcentration());
+	}
+	
+	public int getStrength() {
+		return this.strenght;
+	}
+	
+	public int getDexterity() {
+		return this.dexterity;
+	}
+	
+	public int getIntelligence() {
+		return this.intelligence;
+	}
+	
+	public int getConcentration() {
+		return this.concentration;
+	}
+	
 	private void validateStrenghtIsAboveZero() throws IllegalStrenghtValueIsEqualOrUnderZero {
 		if(aptitude.getStrength() <= MIN_STRENGHT - 1) throw new IllegalStrenghtValueIsEqualOrUnderZero();
 		}

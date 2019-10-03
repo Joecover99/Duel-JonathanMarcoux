@@ -9,14 +9,20 @@ public class Mage extends Fighter{
 	private int concentration;
 	public final static int GAP = 15;
 	
-	public Mage(String name, int numberOfHp, IAptitude aptitude) throws IllegalAptitudeValueIsLessThenTheGap {
-		super(name, numberOfHp, aptitude);
+	public Mage(String name, int numberOfHp, int strenght, int dexterity, int intelligence, int concentration) throws IllegalAptitudeValueIsLessThenTheGap {
+		super(name, numberOfHp, strenght, dexterity, intelligence, concentration);
 		this.validateMageAptitude();
 	}
 	
 	@Override
 	public int getStrength() {
-		return this.aptitude.getStrength();
+		return this.strenght;
+	}
+	
+	@Override
+	public int getNbOfHp() {
+		// TODO Auto-generated method stub
+		return this.numberOfHp;
 	}
 	
 	public int getIntelligence() {
@@ -29,7 +35,7 @@ public class Mage extends Fighter{
 		return this.concentration;
 	}
 	
-	private void validateMageAptitude() throws IllegalAptitudeValueIsLessThenTheGap {
+	private void validateMageAptitude() throws IllegalAptitudeValueIsLessThenTheGap{
 		this.validateIntelligenceValueIsEqualsTheGapValueWithDexterityOrStrenght();
 		this.validateConcentrationValueIsEqualsTheGapValueWithDexterityOrStrenght();
 	}
@@ -43,6 +49,8 @@ public class Mage extends Fighter{
 		if(aptitude.getIntelligence() < Math.max(aptitude.getStrength(), aptitude.getDexterity()) + 15) throw new IllegalAptitudeValueIsLessThenTheGap();
 		
 	}
+
+
 
 
 }

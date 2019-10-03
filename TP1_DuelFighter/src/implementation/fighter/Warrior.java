@@ -8,10 +8,22 @@ public class Warrior extends Fighter{
 	public static int maxConcentrationWarrior = 10;
 	public final static int MINIMAL_GAP = 10;
 	
-	public Warrior(String name, int numberOfHp, IAptitude aptitude) throws IllegalAptitudeValueIsLessThenMinGap {
-		super(name, numberOfHp, aptitude);
+	public Warrior(String name, int numberOfHp, int strenght, int dexterity, int intelligence, int concentration) throws IllegalAptitudeValueIsLessThenMinGap {
+		super(name, numberOfHp, strenght, dexterity, intelligence, concentration);
 		this.validateWarriorAptitude();
 	}
+	
+	@Override
+	public int getStrength() {
+		return this.strenght;
+	}
+
+	
+	@Override
+	public int getNbOfHp() {
+		return this.numberOfHp;
+	}
+	
 	private void validateWarriorAptitude() throws IllegalAptitudeValueIsLessThenMinGap {
 		this.validateStrenghtValueIsAtLeastTheGapValueWithDexterity();
 		this.validateDexterityValueIsAtLeastTheGapValueWithIntelligence();
@@ -32,8 +44,5 @@ public class Warrior extends Fighter{
 		if(aptitude.getStrength() < aptitude.getDexterity() + MINIMAL_GAP) throw new IllegalAptitudeValueIsLessThenMinGap(); 
 	}
 
-	@Override
-	public int getStrength() {
-		return this.aptitude.getStrength();
-	}
+
 }
