@@ -20,6 +20,7 @@ public abstract class Fighter implements IFighter {
 	
 	public static int INITIAL_NUMBER_OF_HP = 200;
 	private String name;
+<<<<<<< HEAD
 	protected int numberOfHp = 200;
 	protected IAptitude aptitude; 
 	int strenght;
@@ -27,8 +28,23 @@ public abstract class Fighter implements IFighter {
 	int intelligence;
 	int concentration;
 	//public int TOO_MUCH_STRENGHT = 40;
+=======
+	private int numberOfHp = 200;
+	private int strenght;
+	private int dexterity;
+	private int intelligence;
+	private int concentration;
+	protected Aptitude aptitude; 
+	//public int TOO_MUCH_STRENGHT = 40;
+
+	public static int MIN_STRENGHT = 1;
+	public static int MIN_DEXTERITY = 1;
+	public static int MIN_INTELLIGENCE = 1;
+	public static int MIN_CONCENTRATION = 1;
+>>>>>>> branch 'devop' of https://github.com/Joecover99/Duel-JonathanMarcoux.git
 
 	
+<<<<<<< HEAD
 	public static int MIN_STRENGHT = 1;
 	public static int MIN_DEXTERITY = 1;
 	public static int MIN_INTELLIGENCE = 1;
@@ -43,6 +59,17 @@ public abstract class Fighter implements IFighter {
 	
 
 	public Fighter(String name, int numberOfHp, int strenght, int dexterity, int intelligence, int concentration) {
+=======
+	public static int MAX_STRENGHT = 40;
+	public static int MAX_DEXTERITY = 40;
+	public static int MAX_INTELLIGENCE = 40;
+	public static int MAX_CONCENTRATION = 40;
+	
+	public static int STRENGHT_TOO_LOW = 30;
+	
+
+	public Fighter(String name, int numberOfHp) {
+>>>>>>> branch 'devop' of https://github.com/Joecover99/Duel-JonathanMarcoux.git
 		this.name = name;
 		this.numberOfHp = numberOfHp;
 		this.strenght = strenght;
@@ -55,6 +82,7 @@ public abstract class Fighter implements IFighter {
 		return name;
 	}
 	
+<<<<<<< HEAD
 	public int getNumberOfHp() {
 		return this.numberOfHp;
 	}
@@ -116,6 +144,12 @@ public abstract class Fighter implements IFighter {
 	private void ValidateAptitudeIsOverTheMaxCapacity() throws IllegalApptitudeIsOverMaxTotal{
 		if(aptitude.getStrength() + aptitude.getDexterity() + aptitude.getIntelligence() + aptitude.getConcentration() <= 100) throw new IllegalApptitudeIsOverMaxTotal();
 	}
+=======
+	public int getNbOfHp(){
+		numberOfHp = numberOfHp - (strenght + dexterity + intelligence + concentration);
+		return numberOfHp;
+	}	
+>>>>>>> branch 'devop' of https://github.com/Joecover99/Duel-JonathanMarcoux.git
 }
 	
 /*
