@@ -1,5 +1,8 @@
 package implementation.fighter;
 
+import abstracts.fighter.IAptitude;
+import exception.fighter.IllegalAptitudeLevelIsLessThenMinLevelForAthlete;
+
 //import exception.fighter.IllegalAptitudeLevelException;
 
 //import Employee.src.implementation.employee.IllegalInitialSalaryException;
@@ -7,25 +10,29 @@ package implementation.fighter;
 public class Athlete extends Fighter{
 	public final static int MINIMAL_LEVEL = 20;
 	
-	public Athlete(String name, int numberOfHp) {
-		super(name, numberOfHp);
-		// TODO Auto-generated constructor stub
+	public Athlete(String name, int numberOfHp, IAptitude aptitude) throws IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+		super(name, numberOfHp, aptitude);
+		this.validateAthleteAptitude();
 	}
-	//force >= 20 dextérité >= 20 intelligence >= 20 concentration >= 20 
+	
+	@Override
 	public int getStrength() {
-		//if(strenght < 20) throw new IllegalAptitudeLevelException(IllegalAptitudeLevelException.APTITUDE_LEVEL_TOO_LOW);
-		return this.aptitude.strenght;
+		return this.aptitude.getStrength();
+	}
+
+	private void validateAthleteAptitude() throws IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+		this.validateAptitudeLevelIsOverMinLevelrequired();
 	}
 	
-	public int getDexterity() {
-		return this.aptitude.dexterity;
+	private void validateAptitudeLevelIsOverMinLevelrequired() throws IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+		if(aptitude.getStrength() < MINIMAL_LEVEL) throw new IllegalAptitudeLevelIsLessThenMinLevelForAthlete();
+		
+		if(aptitude.getDexterity() < MINIMAL_LEVEL) throw new IllegalAptitudeLevelIsLessThenMinLevelForAthlete();
+		
+		if(aptitude.getIntelligence() < MINIMAL_LEVEL) throw new IllegalAptitudeLevelIsLessThenMinLevelForAthlete();
+		
+		if(aptitude.getConcentration() < MINIMAL_LEVEL) throw new IllegalAptitudeLevelIsLessThenMinLevelForAthlete();	
 	}
 	
-	public int getIntelligence() {
-		return this.aptitude.intelligence;
-	}
-	
-	public int getConcentration() {
-		return this.aptitude.concentration;
-	}
+
 }

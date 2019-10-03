@@ -1,44 +1,39 @@
 package implementation.fighter;
 
+import abstracts.fighter.IAptitude;
+import exception.fighter.IllegalAptitudeValueIsLessThenMinGap;
+
 public class Warrior extends Fighter{
-	private int strenght = 31;
-	private int dexterity = 21;
-	private int intelligence = 11;
-	private int concentration = 1;
 	public static int maxStrenght = 40;
-	private int maxConcentrationFighter = 10;
+	public static int maxConcentrationWarrior = 10;
+	public final static int MINIMAL_GAP = 10;
 	
-	public Warrior(String name, int numberOfHp) {
-		super(name, numberOfHp);
-		// TODO Auto-generated constructor stub
+	public Warrior(String name, int numberOfHp, IAptitude aptitude) throws IllegalAptitudeValueIsLessThenMinGap {
+		super(name, numberOfHp, aptitude);
+		this.validateWarriorAptitude();
 	}
-	//force >= dextérité + 10 >= intelligence + 10 >= concentration 
-	public int getStrength() {
-		if(strenght >= maxStrenght){
-		return this.aptitude.strenght;
-		}
-		return this.strenght;
-	}
-	
-	public int getDexterity() {
-		if(dexterity >= intelligence + 10){
-		return this.aptitude.dexterity;
-		}
+	private void validateWarriorAptitude() throws IllegalAptitudeValueIsLessThenMinGap {
+		this.validateStrenghtValueIsAtLeastTheGapValueWithDexterity();
+		this.validateDexterityValueIsAtLeastTheGapValueWithIntelligence();
+		this.validateIntelligenceValueIsAtLeastTheGapValueWithConcentration();
 		
-		return this.dexterity;
+		
+		
 	}
-	
-	public int getIntelligence() {
-		if(intelligence >= concentration + 10){
-		return this.aptitude.intelligence;
-		}
-		return this.aptitude.intelligence;
+	private void validateIntelligenceValueIsAtLeastTheGapValueWithConcentration() throws IllegalAptitudeValueIsLessThenMinGap {
+		if(aptitude.getIntelligence() < aptitude.getConcentration() + MINIMAL_GAP) throw new IllegalAptitudeValueIsLessThenMinGap();
+		
 	}
-	
-	public int getConcentration() {
-		if(concentration >= maxConcentrationFighter){
-		return this.concentration;
-		}
-		return this.concentration;
+	private void validateDexterityValueIsAtLeastTheGapValueWithIntelligence()  throws IllegalAptitudeValueIsLessThenMinGap {
+		if(aptitude.getDexterity() < aptitude.getIntelligence() + MINIMAL_GAP) throw new IllegalAptitudeValueIsLessThenMinGap();
+		
+	}
+	private void validateStrenghtValueIsAtLeastTheGapValueWithDexterity() throws IllegalAptitudeValueIsLessThenMinGap {
+		if(aptitude.getStrength() < aptitude.getDexterity() + MINIMAL_GAP) throw new IllegalAptitudeValueIsLessThenMinGap(); 
+	}
+
+	@Override
+	public int getStrength() {
+		return this.aptitude.getStrength();
 	}
 }
