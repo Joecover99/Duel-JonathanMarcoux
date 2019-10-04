@@ -1,12 +1,15 @@
 package implementation.fighter;
 
 
+import java.util.ArrayList;
+
 import abstracts.fighter.IAptitude;
 
-//import java.util.ArrayList;
+import java.util.ArrayList;
 
 import abstracts.fighter.IFighter;
-import exception.fighter.IllegalApptitudeIsOverMaxTotal;
+import abstracts.fighter.ISkill;
+import exception.fighter.IllegalAptitudeIsOverMaxTotal;
 import exception.fighter.IllegalConcentrationValueIsEqualOrOverMaxTotal;
 import exception.fighter.IllegalConcentrationValueIsEqualOrUnderZero;
 import exception.fighter.IllegalDexterityValueIsEqualOrOverMaxTotal;
@@ -20,31 +23,16 @@ public abstract class Fighter implements IFighter {
 	
 	public static int INITIAL_NUMBER_OF_HP = 200;
 	private String name;
-<<<<<<< HEAD
 	protected int numberOfHp = 200;
 	protected IAptitude aptitude; 
 	int strenght;
 	int dexterity;
 	int intelligence;
 	int concentration;
+	private ArrayList<ISkill> skillList = new ArrayList<ISkill>();
 	//public int TOO_MUCH_STRENGHT = 40;
-=======
-	private int numberOfHp = 200;
-	private int strenght;
-	private int dexterity;
-	private int intelligence;
-	private int concentration;
-	protected Aptitude aptitude; 
-	//public int TOO_MUCH_STRENGHT = 40;
-
-	public static int MIN_STRENGHT = 1;
-	public static int MIN_DEXTERITY = 1;
-	public static int MIN_INTELLIGENCE = 1;
-	public static int MIN_CONCENTRATION = 1;
->>>>>>> branch 'devop' of https://github.com/Joecover99/Duel-JonathanMarcoux.git
 
 	
-<<<<<<< HEAD
 	public static int MIN_STRENGHT = 1;
 	public static int MIN_DEXTERITY = 1;
 	public static int MIN_INTELLIGENCE = 1;
@@ -58,37 +46,45 @@ public abstract class Fighter implements IFighter {
 	public static int MAX_APTITUDE = 100;
 	
 
-	public Fighter(String name, int numberOfHp, int strenght, int dexterity, int intelligence, int concentration) {
-=======
-	public static int MAX_STRENGHT = 40;
-	public static int MAX_DEXTERITY = 40;
-	public static int MAX_INTELLIGENCE = 40;
-	public static int MAX_CONCENTRATION = 40;
-	
-	public static int STRENGHT_TOO_LOW = 30;
-	
-
-	public Fighter(String name, int numberOfHp) {
->>>>>>> branch 'devop' of https://github.com/Joecover99/Duel-JonathanMarcoux.git
+	public Fighter(String name, int numberOfHp, int strenght, int dexterity, int intelligence, int concentration, ISkill skill1, ISkill skill2) {
 		this.name = name;
 		this.numberOfHp = numberOfHp;
 		this.strenght = strenght;
 		this.dexterity = dexterity;
 		this.intelligence = intelligence;
 		this.concentration = concentration;
+		
+		this.skillList.add(skill1);
+		this.skillList.add(skill2);
+		
+		CalculateInitialNbOfHp();
 	}
 
+	protected void validateAttribute(int strenght, int dexterity, int intelligence, int concentration) throws IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero{
+		validateStrenghtIsAboveZero(strenght);
+		validatedDexterityIsAboveZero(dexterity);
+		validateIntelligenceIsAboveZero(intelligence);
+		validateConcentrationtIsAboveZero(concentration);
+		
+		validateStrenghtEqualOrAboveMaxTotal(strenght);
+		validateDexterityEqualOrAboveMaxTotal(dexterity);
+		validateIntelligenceIsAboveZero(intelligence);
+		validateConcentrationEqualOrAboveMaxTotal(concentration);
+		
+		ValidateAptitudeIsOverTheMaxCapacity();
+
+	}
+	
 	public String getName() {
 		return name;
 	}
 	
-<<<<<<< HEAD
 	public int getNumberOfHp() {
 		return this.numberOfHp;
 	}
 	
 	public void CalculateInitialNbOfHp(){
-		this.numberOfHp = INITIAL_NUMBER_OF_HP - (aptitude.getStrength() + aptitude.getDexterity() + aptitude.getIntelligence() + aptitude.getConcentration());
+		this.numberOfHp = INITIAL_NUMBER_OF_HP - (this.getStrength() + this.getDexterity() + this.getIntelligence() + this.getConcentration());
 	}
 	
 	public int getStrength() {
@@ -107,49 +103,69 @@ public abstract class Fighter implements IFighter {
 		return this.concentration;
 	}
 	
-	private void validateStrenghtIsAboveZero() throws IllegalStrenghtValueIsEqualOrUnderZero {
-		if(aptitude.getStrength() <= MIN_STRENGHT - 1) throw new IllegalStrenghtValueIsEqualOrUnderZero();
-		}
-		
-		
-	private void  validatedDexterityIsAboveZero() throws IllegalDexterityValueIsEqualOrUnderZero {
-		if(aptitude.getStrength() <= MIN_DEXTERITY - 1)throw new IllegalDexterityValueIsEqualOrUnderZero();	
-		}
-	
-	private void  validateIntelligenceIsAboveZero() throws IllegalIntelligenceValueIsEqualOrUnderZero {
-		if(aptitude.getStrength() <= MIN_INTELLIGENCE - 1) throw new IllegalIntelligenceValueIsEqualOrUnderZero();
-		}
-	
-	private void validateConcentrationtIsAboveZero() throws IllegalConcentrationValueIsEqualOrUnderZero {
-		if(aptitude.getStrength() <= MIN_CONCENTRATION - 1) throw new IllegalConcentrationValueIsEqualOrUnderZero();
+	public void addSkill(ISkill skill){
+		skillList.add(skill);
 	}
 	
-	private void validateStrenghtEqualOrAboveMaxTotal() throws IllegalStrenghtValueIsEqualOrOverMaxTotal{
-		if(aptitude.getStrength() <= MAX_STRENGHT - 1) throw new IllegalStrenghtValueIsEqualOrOverMaxTotal();
+	public void removeSkill(ISkill skill){
+		skillList.remove(skill);
+	}
+	
+	private void validateStrenghtIsAboveZero(int strenght) throws IllegalStrenghtValueIsEqualOrUnderZero {
+		if(this.getStrength() < MIN_STRENGHT) {
+			throw new IllegalStrenghtValueIsEqualOrUnderZero();
+		}
 		}
 		
 		
-	private void validateDexterityEqualOrAboveMaxTotal() throws IllegalDexterityValueIsEqualOrOverMaxTotal {
-		if(aptitude.getStrength() <= MAX_DEXTERITY - 1)throw new IllegalDexterityValueIsEqualOrOverMaxTotal();	
+	private void  validatedDexterityIsAboveZero(int dexterity) throws IllegalDexterityValueIsEqualOrUnderZero {
+		if(this.getDexterity() < MIN_DEXTERITY){
+			throw new IllegalDexterityValueIsEqualOrUnderZero();	
+		}
 		}
 	
-	private void validateIntelligenceEqualOrAboveMaxTotal() throws IllegalIntelligenceValueIsEqualOrOverMaxTotal {
-		if(aptitude.getStrength() <= MAX_INTELLIGENCE - 1) throw new IllegalIntelligenceValueIsEqualOrOverMaxTotal();
+	private void  validateIntelligenceIsAboveZero(int intelligence) throws IllegalIntelligenceValueIsEqualOrUnderZero {
+		if(this.getIntelligence() < MIN_INTELLIGENCE) {
+			throw new IllegalIntelligenceValueIsEqualOrUnderZero();
+		}
 		}
 	
-	private void validateConcentrationEqualOrAboveMaxTotal() throws IllegalConcentrationValueIsEqualOrOverMaxTotal{
-		if(aptitude.getStrength() <= MAX_CONCENTRATION - 1) throw new IllegalConcentrationValueIsEqualOrOverMaxTotal();
+	private void validateConcentrationtIsAboveZero(int concentration) throws IllegalConcentrationValueIsEqualOrUnderZero  {
+		if(this.getConcentration() < MIN_CONCENTRATION) {
+			throw new IllegalConcentrationValueIsEqualOrUnderZero();
+		}
+	}
+	
+	private void validateStrenghtEqualOrAboveMaxTotal(int strenght) throws IllegalStrenghtValueIsEqualOrOverMaxTotal{
+		if(this.getStrength() > MAX_STRENGHT) {
+			throw new IllegalStrenghtValueIsEqualOrOverMaxTotal();
+		}
+		}
+		
+		
+	private void validateDexterityEqualOrAboveMaxTotal(int dexterity) throws IllegalDexterityValueIsEqualOrOverMaxTotal{
+		if(this.getDexterity() > MAX_DEXTERITY){
+			throw new IllegalDexterityValueIsEqualOrOverMaxTotal();	
+		}
+		}
+	
+	private void validateIntelligenceEqualOrAboveMaxTotal(int intelligence) throws IllegalIntelligenceValueIsEqualOrOverMaxTotal {
+		if(this.getIntelligence() > MAX_INTELLIGENCE) {
+			throw new IllegalIntelligenceValueIsEqualOrOverMaxTotal();
+		}
+		}
+	
+	private void validateConcentrationEqualOrAboveMaxTotal(int concentration) throws IllegalConcentrationValueIsEqualOrOverMaxTotal{
+		if(this.getConcentration() > MAX_CONCENTRATION) {
+			throw new IllegalConcentrationValueIsEqualOrOverMaxTotal();
+		}
 	}
 
-	private void ValidateAptitudeIsOverTheMaxCapacity() throws IllegalApptitudeIsOverMaxTotal{
-		if(aptitude.getStrength() + aptitude.getDexterity() + aptitude.getIntelligence() + aptitude.getConcentration() <= 100) throw new IllegalApptitudeIsOverMaxTotal();
+	private void ValidateAptitudeIsOverTheMaxCapacity() throws IllegalAptitudeIsOverMaxTotal{
+		if(this.getStrength() + this.getDexterity() + this.getIntelligence() + this.getConcentration() > MAX_APTITUDE) {
+			throw new IllegalAptitudeIsOverMaxTotal();
+		}
 	}
-=======
-	public int getNbOfHp(){
-		numberOfHp = numberOfHp - (strenght + dexterity + intelligence + concentration);
-		return numberOfHp;
-	}	
->>>>>>> branch 'devop' of https://github.com/Joecover99/Duel-JonathanMarcoux.git
 }
 	
 /*

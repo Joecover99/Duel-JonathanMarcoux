@@ -1,37 +1,31 @@
 package implementation.fighter;
 
-<<<<<<< HEAD
 import abstracts.fighter.IAptitude;
+import abstracts.fighter.ISkill;
+import exception.fighter.IllegalAptitudeIsOverMaxTotal;
 import exception.fighter.IllegalAptitudeValueIsLessThenMinGap;
-=======
-import exception.fighter.IllegalAptitudeLevelException;
-import exception.fighter.IllegalArguementException;
->>>>>>> branch 'devop' of https://github.com/Joecover99/Duel-JonathanMarcoux.git
+import exception.fighter.IllegalConcentrationValueIsEqualOrOverMaxTotal;
+import exception.fighter.IllegalConcentrationValueIsEqualOrUnderZero;
+import exception.fighter.IllegalDexterityValueIsEqualOrOverMaxTotal;
+import exception.fighter.IllegalDexterityValueIsEqualOrUnderZero;
+import exception.fighter.IllegalIntelligenceValueIsEqualOrUnderZero;
+import exception.fighter.IllegalStrenghtValueIsEqualOrOverMaxTotal;
+import exception.fighter.IllegalStrenghtValueIsEqualOrUnderZero;
 
 public class Warrior extends Fighter{
 	public static int maxStrenght = 40;
 	public static int maxConcentrationWarrior = 10;
-<<<<<<< HEAD
 	public final static int MINIMAL_GAP = 10;
-=======
->>>>>>> branch 'devop' of https://github.com/Joecover99/Duel-JonathanMarcoux.git
 	
-	public Warrior(String name, int numberOfHp, int strenght, int dexterity, int intelligence, int concentration) throws IllegalAptitudeValueIsLessThenMinGap {
-		super(name, numberOfHp, strenght, dexterity, intelligence, concentration);
+	public Warrior(String name, int numberOfHp, int strenght, int dexterity, int intelligence, int concentration, ISkill skill1, ISkill skill2) throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero {
+		super(name, numberOfHp, strenght, dexterity, intelligence, concentration, skill1, skill2);
 		this.validateWarriorAptitude();
+		validateAttribute(strenght, dexterity, intelligence, concentration);
 	}
 	
 	@Override
 	public int getStrength() {
-<<<<<<< HEAD
-=======
-		if(strenght >= maxStrenght) //throw new IllegalAptitudeLevelException(IllegalAptitudeLevelException.APTITUDE_LEVEL_TOO_LOW);
-			{
-			//throw new IllegalAptitudeLevelException(IllegalAptitudeLevelException.APTITUDE_LEVEL_TOO_LOW);
-		}
->>>>>>> branch 'devop' of https://github.com/Joecover99/Duel-JonathanMarcoux.git
 		return this.strenght;
-
 	}
 
 	
@@ -45,28 +39,21 @@ public class Warrior extends Fighter{
 		this.validateDexterityValueIsAtLeastTheGapValueWithIntelligence();
 		this.validateIntelligenceValueIsAtLeastTheGapValueWithConcentration();
 		
-		
-		
 	}
 	private void validateIntelligenceValueIsAtLeastTheGapValueWithConcentration() throws IllegalAptitudeValueIsLessThenMinGap {
-		if(aptitude.getIntelligence() < aptitude.getConcentration() + MINIMAL_GAP) throw new IllegalAptitudeValueIsLessThenMinGap();
-		
-	}
-<<<<<<< HEAD
-	private void validateDexterityValueIsAtLeastTheGapValueWithIntelligence()  throws IllegalAptitudeValueIsLessThenMinGap {
-		if(aptitude.getDexterity() < aptitude.getIntelligence() + MINIMAL_GAP) throw new IllegalAptitudeValueIsLessThenMinGap();
-		
-=======
-	
-	public int getConcentration() {
-		if(concentration >= maxConcentrationWarrior){
-		return this.concentration;
+		if(this.getIntelligence() < this.getConcentration() + MINIMAL_GAP){
+			throw new IllegalAptitudeValueIsLessThenMinGap();
 		}
-		return this.concentration;
->>>>>>> branch 'devop' of https://github.com/Joecover99/Duel-JonathanMarcoux.git
+	}
+	private void validateDexterityValueIsAtLeastTheGapValueWithIntelligence() throws IllegalAptitudeValueIsLessThenMinGap {
+		if(this.getDexterity() < this.getIntelligence() + MINIMAL_GAP){
+			throw new IllegalAptitudeValueIsLessThenMinGap();
+		}
 	}
 	private void validateStrenghtValueIsAtLeastTheGapValueWithDexterity() throws IllegalAptitudeValueIsLessThenMinGap {
-		if(aptitude.getStrength() < aptitude.getDexterity() + MINIMAL_GAP) throw new IllegalAptitudeValueIsLessThenMinGap(); 
+		if(this.getStrength() < this.getDexterity() + MINIMAL_GAP) {
+			throw new IllegalAptitudeValueIsLessThenMinGap(); 
+		}
 	}
 
 
