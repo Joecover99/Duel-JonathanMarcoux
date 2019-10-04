@@ -9,10 +9,12 @@ import abstracts.fighter.ISkill;
 import exception.fighter.IllegalAptitudeIsOverMaxTotal;
 import exception.fighter.IllegalAptitudeLevelIsLessThenMinLevelForAthlete;
 import exception.fighter.IllegalAptitudeValueIsLessThenMinGap;
+import exception.fighter.IllegalAptitudeValueIsLessThenTheGap;
 import exception.fighter.IllegalConcentrationValueIsEqualOrOverMaxTotal;
 import exception.fighter.IllegalConcentrationValueIsEqualOrUnderZero;
 import exception.fighter.IllegalDexterityValueIsEqualOrOverMaxTotal;
 import exception.fighter.IllegalDexterityValueIsEqualOrUnderZero;
+import exception.fighter.IllegalIntelligenceValueIsEqualOrOverMaxTotal;
 import exception.fighter.IllegalIntelligenceValueIsEqualOrUnderZero;
 import exception.fighter.IllegalStrenghtValueIsEqualOrOverMaxTotal;
 import exception.fighter.IllegalStrenghtValueIsEqualOrUnderZero;
@@ -22,37 +24,49 @@ import implementation.fighter.Mage;
 import implementation.fighter.Warrior;
 
 public class FighterTest {
-	private static final String TOO_MUCH_STRENGHT = null;
-	private static final int MAX_WARRIOR_STRENGHT = 40;
+
 	private final int INITIAL_NUMBER_OF_HP = 200;
-	final private String ANY_NAME = "joe";
-	final private int ANY_NBOFHP = 200;
-	final private int ANY_WARRIOR_STRENGHT = 31;
-	final private int ANY_WARRIOR_DEXTERITY = 21;
-	final private int ANY_WARRIOR_INTELLIGENCE = 11;
-	final private int ANY_WARRIOR_CONCENTRATION = 1;
-	final private int ANY_ATHLETE_STRENGHT = 21;
-	final private int ANY_ATHLETE_DEXTERITY = 21;
-	final private int ANY_ATHLETE_INTELLIGENCE = 21;
-	final private int ANY_ATHLETE_CONCENTRATION = 21;
+	private final String ANY_NAME = "joe";
+	private final int ANY_NBOFHP = 200;
+	
+	private final int ANY_WARRIOR_STRENGHT = 31;
+	private final int ANY_WARRIOR_DEXTERITY = 21;
+	private final int ANY_WARRIOR_INTELLIGENCE = 11;
+	private final int ANY_WARRIOR_CONCENTRATION = 1;
+	
+	private final int ANY_ATHLETE_STRENGHT = 21;
+	private final int ANY_ATHLETE_DEXTERITY = 21;
+	private final int ANY_ATHLETE_INTELLIGENCE = 21;
+	private final int ANY_ATHLETE_CONCENTRATION = 21;
+	final private int MIN_LEVEL_ATHLETE = 20;
+	
+	private final int ANY_MAGE_STRENGHT = 1;
+	private final int ANY_MAGE_DEXTERITY = 1;
+	private final int ANY_MAGE_INTELLIGENCE = 16;
+	private final int ANY_MAGE_CONCENTRATION = 16;
+	
 	final private ISkill skill1 = null;
 	final private ISkill skill2 = null;
-	final private int MIN_LEVEL_ATHLETE = 20;
-	//final private int MAX_WARRIOR_STRENGHT = 31;
 
+	//final private int MAX_WARRIOR_STRENGHT = 31;
+	
+
+	//WARRIOR
+	
 	@Test
-	public void When_FighterIsCreated_Then_NameIsInitialize() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero {
+	public void When_FighterIsCreated_Then_NameIsInitialize() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
 
 		//Arrange
 		IFighter fighter = new Warrior(ANY_NAME, ANY_NBOFHP, ANY_WARRIOR_STRENGHT, ANY_WARRIOR_DEXTERITY, ANY_WARRIOR_INTELLIGENCE, ANY_WARRIOR_CONCENTRATION, skill1, skill2);
-
+		//arrenge
+		fighter.getName();
         //Assert
         String EXPECTED_NAME = ANY_NAME;
         assertEquals(EXPECTED_NAME,fighter.getName());  
 	}
 	
 	@Test
-	public void When_FighterIsCreated_Then_HpIsInitialize() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero {
+	public void When_FighterIsCreated_Then_HpIsInitialize() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Warrior(ANY_NAME, INITIAL_NUMBER_OF_HP, ANY_WARRIOR_STRENGHT, ANY_WARRIOR_DEXTERITY, ANY_WARRIOR_INTELLIGENCE, ANY_WARRIOR_CONCENTRATION, skill1, skill2);
 
@@ -62,7 +76,7 @@ public class FighterTest {
 	}
 	
 	@Test
-	public void When_FighterIsCreated_Then_StrenghtisReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero {
+	public void When_FighterIsCreated_Then_StrenghtIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Warrior(ANY_NAME, ANY_NBOFHP, ANY_WARRIOR_STRENGHT, ANY_WARRIOR_DEXTERITY, ANY_WARRIOR_INTELLIGENCE, ANY_WARRIOR_CONCENTRATION, skill1, skill1);
 
@@ -74,8 +88,9 @@ public class FighterTest {
 	}
 	
 	@Test
-	public void When_WarriorIsCreated_Then_MaxStrenghtisReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero {
+	public void When_WarriorIsCreated_Then_MaxStrenghtIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
+		final int MAX_WARRIOR_STRENGHT = 40;
 		IFighter fighter = new Warrior(ANY_NAME, ANY_NBOFHP, MAX_WARRIOR_STRENGHT, ANY_WARRIOR_DEXTERITY, ANY_WARRIOR_INTELLIGENCE, ANY_WARRIOR_CONCENTRATION, skill1, skill2);
 
 		//act
@@ -86,7 +101,7 @@ public class FighterTest {
 	}
 	
 	@Test (expected = IllegalStrenghtValueIsEqualOrOverMaxTotal.class)
-	public void When_WarriorIsCreated_Then_TooMuchStrenghtExceptionisThrown() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero {
+	public void When_WarriorIsCreated_Then_TooMuchStrenghtExceptionIsThrown() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		final int TOO_MUCH_STRENGHT = Warrior.maxStrenght + 1;
 		IFighter fighter = new Warrior(ANY_NAME, ANY_NBOFHP, TOO_MUCH_STRENGHT, ANY_WARRIOR_DEXTERITY, ANY_WARRIOR_INTELLIGENCE, ANY_WARRIOR_CONCENTRATION, skill1, skill2);
@@ -96,7 +111,7 @@ public class FighterTest {
 	}
 	
 	@Test (expected = IllegalAptitudeValueIsLessThenMinGap.class)
-	public void When_WarriorIsCreated_Then_TooMuchDexterityExceptionisThrown() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero {
+	public void When_WarriorIsCreated_Then_TooMuchDexterityExceptionIsThrown() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Warrior(ANY_NAME, ANY_NBOFHP, ANY_WARRIOR_STRENGHT, ANY_WARRIOR_DEXTERITY + 1, ANY_WARRIOR_INTELLIGENCE, ANY_WARRIOR_CONCENTRATION, skill1, skill2);
 
@@ -105,7 +120,7 @@ public class FighterTest {
 	}
 	
 	@Test (expected = IllegalAptitudeValueIsLessThenMinGap.class)
-	public void When_WarriorIsCreated_Then_TooMuchIntelligenceExceptionisThrown() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero {
+	public void When_WarriorIsCreated_Then_TooMuchIntelligenceExceptionIsThrown() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Warrior(ANY_NAME, ANY_NBOFHP, ANY_WARRIOR_STRENGHT, ANY_WARRIOR_DEXTERITY, ANY_WARRIOR_INTELLIGENCE + 1, ANY_WARRIOR_CONCENTRATION, skill1, skill2);
 
@@ -114,7 +129,7 @@ public class FighterTest {
 	}
 	
 	@Test (expected = IllegalAptitudeValueIsLessThenMinGap.class)
-	public void When_WarriorIsCreated_Then_TooMuchConcentrationExceptionisThrown() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero {
+	public void When_WarriorIsCreated_Then_TooMuchConcentrationExceptionIsThrown() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Warrior(ANY_NAME, ANY_NBOFHP, ANY_WARRIOR_STRENGHT, ANY_WARRIOR_DEXTERITY, ANY_WARRIOR_INTELLIGENCE, ANY_WARRIOR_CONCENTRATION + 1, skill1, skill2);
 
@@ -123,7 +138,7 @@ public class FighterTest {
 	}
 	
 	@Test (expected = IllegalAptitudeValueIsLessThenMinGap.class)
-	public void When_WarriorIsCreated_Then_StrenghtIsTooLowExceptionisThrown() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero {
+	public void When_WarriorIsCreated_Then_StrenghtIsTooLowExceptionIsThrown() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Warrior(ANY_NAME, ANY_NBOFHP, ANY_WARRIOR_STRENGHT - 1, ANY_WARRIOR_DEXTERITY, ANY_WARRIOR_INTELLIGENCE, ANY_WARRIOR_CONCENTRATION, skill1, skill2);
 
@@ -131,8 +146,10 @@ public class FighterTest {
 		fighter.getStrength();
 	}
 	
+	//ATHLETE
+	
 	@Test
-	public void When_AthleteIsCreated_Then_StrenghtIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+	public void When_AthleteIsCreated_Then_StrenghtIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Athlete(ANY_NAME, ANY_NBOFHP, ANY_ATHLETE_STRENGHT, ANY_ATHLETE_DEXTERITY, ANY_ATHLETE_INTELLIGENCE, ANY_ATHLETE_CONCENTRATION, skill1, skill2);
 
@@ -144,7 +161,7 @@ public class FighterTest {
 	}
 	
 	@Test
-	public void When_AthleteIsCreated_Then_DexterityisReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+	public void When_AthleteIsCreated_Then_DexterityIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Athlete(ANY_NAME, ANY_NBOFHP, ANY_ATHLETE_STRENGHT, ANY_ATHLETE_DEXTERITY, ANY_ATHLETE_INTELLIGENCE, ANY_ATHLETE_CONCENTRATION, skill1, skill2);
 
@@ -156,7 +173,7 @@ public class FighterTest {
 	}
 	
 	@Test
-	public void When_AthleteIsCreated_Then_IntelligenceisReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+	public void When_AthleteIsCreated_Then_IntelligenceIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Athlete(ANY_NAME, ANY_NBOFHP, ANY_ATHLETE_STRENGHT, ANY_ATHLETE_DEXTERITY, ANY_ATHLETE_INTELLIGENCE, ANY_ATHLETE_CONCENTRATION, skill1, skill2);
 
@@ -168,19 +185,19 @@ public class FighterTest {
 	}
 	
 	@Test
-	public void When_AthleteIsCreated_Then_ConcentrationisReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+	public void When_AthleteIsCreated_Then_ConcentrationIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Athlete(ANY_NAME, ANY_NBOFHP, ANY_ATHLETE_STRENGHT, ANY_ATHLETE_DEXTERITY, ANY_ATHLETE_INTELLIGENCE, ANY_ATHLETE_CONCENTRATION, skill1, skill2);
 
 		//act
 		fighter.getConcentration();
 		//assert
-        int EXPECTED_CONCENTRATION = ANY_ATHLETE_INTELLIGENCE;
+        int EXPECTED_CONCENTRATION = ANY_ATHLETE_CONCENTRATION;
         assertEquals(EXPECTED_CONCENTRATION,fighter.getConcentration());  
 	}
 	
 	@Test
-	public void When_AthleteIsCreated_Then_MinStrenghtIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+	public void When_AthleteIsCreated_Then_MinStrenghtIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Athlete(ANY_NAME, ANY_NBOFHP, MIN_LEVEL_ATHLETE, ANY_ATHLETE_DEXTERITY, ANY_ATHLETE_INTELLIGENCE, ANY_ATHLETE_CONCENTRATION, skill1, skill2);
 
@@ -192,7 +209,7 @@ public class FighterTest {
 	}
 	
 	@Test
-	public void When_AthleteIsCreated_Then_MinDexterityisReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+	public void When_AthleteIsCreated_Then_MinDexterityIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Athlete(ANY_NAME, ANY_NBOFHP, ANY_ATHLETE_STRENGHT, MIN_LEVEL_ATHLETE, ANY_ATHLETE_INTELLIGENCE, ANY_ATHLETE_CONCENTRATION, skill1, skill2);
 
@@ -204,7 +221,7 @@ public class FighterTest {
 	}
 	
 	@Test
-	public void When_AthleteIsCreated_Then_MinIntelligenceisReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+	public void When_AthleteIsCreated_Then_MinIntelligenceIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Athlete(ANY_NAME, ANY_NBOFHP, ANY_ATHLETE_STRENGHT, ANY_ATHLETE_DEXTERITY, MIN_LEVEL_ATHLETE, ANY_ATHLETE_CONCENTRATION, skill1, skill2);
 
@@ -216,7 +233,7 @@ public class FighterTest {
 	}
 	
 	@Test
-	public void When_AthleteIsCreated_Then_MinConcentrationisReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+	public void When_AthleteIsCreated_Then_MinConcentrationIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Athlete(ANY_NAME, ANY_NBOFHP, ANY_ATHLETE_STRENGHT, ANY_ATHLETE_DEXTERITY, ANY_ATHLETE_INTELLIGENCE, MIN_LEVEL_ATHLETE, skill1, skill2);
 
@@ -228,7 +245,7 @@ public class FighterTest {
 	}
 	
 	@Test
-	public void When_AthleteIsCreated_Then_MaxAhleteisReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+	public void When_AthleteIsCreated_Then_MaxAhleteIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		int strenght = 25;
 		int dexterity = 25;
@@ -244,7 +261,7 @@ public class FighterTest {
 	}
 	
 	@Test(expected = IllegalAptitudeLevelIsLessThenMinLevelForAthlete.class)
-	public void When_AthleteIsCreated_Then_TooLowStrenghtIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+	public void When_AthleteIsCreated_Then_TooLowStrenghtIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Athlete(ANY_NAME, ANY_NBOFHP, 19, ANY_ATHLETE_DEXTERITY, ANY_ATHLETE_INTELLIGENCE, ANY_ATHLETE_CONCENTRATION, skill1, skill2);
 
@@ -253,7 +270,7 @@ public class FighterTest {
 	}
 	
 	@Test(expected = IllegalAptitudeLevelIsLessThenMinLevelForAthlete.class)
-	public void When_AthleteIsCreated_Then_TooLowDexterityisReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+	public void When_AthleteIsCreated_Then_TooLowDexterityIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Athlete(ANY_NAME, ANY_NBOFHP, ANY_ATHLETE_STRENGHT, 19, ANY_ATHLETE_INTELLIGENCE, ANY_ATHLETE_CONCENTRATION, skill1, skill2);
 
@@ -262,7 +279,7 @@ public class FighterTest {
 	}
 	
 	@Test(expected = IllegalAptitudeLevelIsLessThenMinLevelForAthlete.class)
-	public void When_AthleteIsCreated_Then_TooLowIntelligenceisReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+	public void When_AthleteIsCreated_Then_TooLowIntelligenceIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Athlete(ANY_NAME, ANY_NBOFHP, ANY_ATHLETE_STRENGHT, ANY_ATHLETE_DEXTERITY, 19, ANY_ATHLETE_CONCENTRATION, skill1, skill2);
 
@@ -271,7 +288,7 @@ public class FighterTest {
 	}
 	
 	@Test (expected = IllegalAptitudeLevelIsLessThenMinLevelForAthlete.class)
-	public void When_AthleteIsCreated_Then_TooLowConcentrationisReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+	public void When_AthleteIsCreated_Then_TooLowConcentrationIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		IFighter fighter = new Athlete(ANY_NAME, ANY_NBOFHP, ANY_ATHLETE_STRENGHT, ANY_ATHLETE_DEXTERITY, ANY_ATHLETE_INTELLIGENCE, 19, skill1, skill2);
 
@@ -280,7 +297,7 @@ public class FighterTest {
 	}
 	
 	@Test (expected = IllegalAptitudeIsOverMaxTotal.class)
-	public void When_AthleteIsCreated_Then_TooHighLevelOverallConcentrationisReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete {
+	public void When_AthleteIsCreated_Then_TooHighLevelOverallConcentrationIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
         //Arrange
 		int strenght = 25;
 		int dexterity = 25;
@@ -292,6 +309,124 @@ public class FighterTest {
 		fighter.getIntelligence();
 	}
 	
+	@Test
+	public void When_MageIsCreated_Then_StrenghtIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalAptitudeValueIsLessThenTheGap, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
+        //Arrange
+		IFighter fighter = new Mage(ANY_NAME, ANY_NBOFHP, ANY_MAGE_STRENGHT, ANY_MAGE_DEXTERITY, ANY_MAGE_INTELLIGENCE, ANY_MAGE_CONCENTRATION, skill1, skill2);
+
+		//act
+		fighter.getStrength();
+		//assert
+        int EXPECTED_STRENGHT = ANY_MAGE_STRENGHT;
+        assertEquals(EXPECTED_STRENGHT,fighter.getStrength());  
+	}
 	
+	//MAGE
+	
+	@Test
+	public void When_MageIsCreated_Then_DexterityIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalAptitudeValueIsLessThenTheGap, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
+        //Arrange
+		IFighter fighter = new Mage(ANY_NAME, ANY_NBOFHP, ANY_MAGE_STRENGHT, ANY_MAGE_DEXTERITY, ANY_MAGE_INTELLIGENCE, ANY_MAGE_CONCENTRATION, skill1, skill2);
+
+		//act
+		fighter.getDexterity();
+		//assert
+        int EXPECTED_DEXTERITY = ANY_MAGE_DEXTERITY;
+        assertEquals(EXPECTED_DEXTERITY,fighter.getDexterity());  
+	}
+	
+	@Test
+	public void When_MageIsCreated_Then_IntelligenceIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalAptitudeValueIsLessThenTheGap, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
+        //Arrange
+		IFighter fighter = new Mage(ANY_NAME, ANY_NBOFHP, ANY_MAGE_STRENGHT, ANY_MAGE_DEXTERITY, ANY_MAGE_INTELLIGENCE, ANY_MAGE_CONCENTRATION, skill1, skill2);
+
+		//act
+		fighter.getIntelligence();
+		//assert
+        int EXPECTED_INTELLIGENCE = ANY_MAGE_INTELLIGENCE;
+        assertEquals(EXPECTED_INTELLIGENCE,fighter.getIntelligence());  
+	}
+	
+	@Test
+	public void When_MageIsCreated_Then_ConcentrationIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalAptitudeValueIsLessThenTheGap, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
+        //Arrange
+		IFighter fighter = new Mage(ANY_NAME, ANY_NBOFHP, ANY_MAGE_STRENGHT, ANY_MAGE_DEXTERITY, ANY_MAGE_INTELLIGENCE, ANY_MAGE_CONCENTRATION, skill1, skill2);
+
+		//act
+		fighter.getConcentration();
+		//assert
+        int EXPECTED_CONCENTRATION = ANY_MAGE_CONCENTRATION;
+        assertEquals(EXPECTED_CONCENTRATION,fighter.getConcentration());  
+	}
+	
+	@Test
+	public void When_MageIsCreatedWith1DiffrentStrenghtAndDexterity_Then_IntelligenceIsReturnedAdjustWithMaxStrenght() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalAptitudeValueIsLessThenTheGap, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
+        //Arrange
+		IFighter fighter = new Mage(ANY_NAME, ANY_NBOFHP, ANY_MAGE_STRENGHT + 1, ANY_MAGE_DEXTERITY, ANY_MAGE_INTELLIGENCE, ANY_MAGE_CONCENTRATION, skill1, skill2);
+
+		//act
+		fighter.getConcentration();
+		//assert
+        int EXPECTED_INTELLIGENCE = ANY_MAGE_INTELLIGENCE + 1;
+        assertEquals(EXPECTED_INTELLIGENCE,fighter.getIntelligence());  
+	}
+	
+	@Test
+	public void When_MageIsCreatedWith1DiffrentStrenghtAndDexterity_Then_ConcentrationIsReturnedAdjustWithMaxStrenght() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalAptitudeValueIsLessThenTheGap, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
+        //Arrange
+		IFighter fighter = new Mage(ANY_NAME, ANY_NBOFHP, ANY_MAGE_STRENGHT + 1, ANY_MAGE_DEXTERITY, ANY_MAGE_INTELLIGENCE, ANY_MAGE_CONCENTRATION, skill1, skill2);
+
+		//act
+		fighter.getConcentration();
+		//assert
+        int EXPECTED_CONCENTRATION = ANY_MAGE_CONCENTRATION + 1;
+        assertEquals(EXPECTED_CONCENTRATION,fighter.getConcentration());  
+	}
+	
+	@Test
+	public void When_MageIsCreatedWith1DiffrentStrenghtAndDexterity_Then_IntelligenceIsReturnedAdjustWithMaxDexterity() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalAptitudeValueIsLessThenTheGap, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
+        //Arrange
+		IFighter fighter = new Mage(ANY_NAME, ANY_NBOFHP, ANY_MAGE_STRENGHT, ANY_MAGE_DEXTERITY + 1, ANY_MAGE_INTELLIGENCE, ANY_MAGE_CONCENTRATION, skill1, skill2);
+
+		//act
+		fighter.getConcentration();
+		//assert
+        int EXPECTED_INTELLIGENCE = ANY_MAGE_INTELLIGENCE + 1;
+        assertEquals(EXPECTED_INTELLIGENCE,fighter.getIntelligence());  
+	}
+	
+	@Test
+	public void When_MageIsCreatedWith1DiffrentStrenghtAndDexterity_Then_ConcentrationIsReturnedAdjustWithMaxDexterity() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalAptitudeValueIsLessThenTheGap, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
+        //Arrange
+		IFighter fighter = new Mage(ANY_NAME, ANY_NBOFHP, ANY_MAGE_STRENGHT, ANY_MAGE_DEXTERITY + 1, ANY_MAGE_INTELLIGENCE, ANY_MAGE_CONCENTRATION, skill1, skill2);
+
+		//act
+		fighter.getConcentration();
+		//assert
+        int EXPECTED_CONCENTRATION = ANY_MAGE_CONCENTRATION + 1;
+        assertEquals(EXPECTED_CONCENTRATION,fighter.getConcentration());  
+	}
+	
+	/*@Test (expected = IllegalAptitudeValueIsLessThenTheGap.class)
+	public void When_MageIsCreatedWithTooLowGap_Then_TooLowConcentrationIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal, IllegalAptitudeValueIsLessThenTheGap {
+        //Arrange
+		int IntelligenceLevelTooLow = 15;
+		IFighter fighter = new Mage(ANY_NAME, ANY_NBOFHP, ANY_MAGE_STRENGHT, ANY_MAGE_DEXTERITY, 15, ANY_MAGE_CONCENTRATION, skill1, skill2);
+
+		//act
+		fighter.getIntelligence();
+	}
+	
+	@Test (expected = IllegalAptitudeValueIsLessThenTheGap.class)
+	public void When_MageIsCreatedWithHighConcentrationGap_Then_TooLowConcentrationIsReturned() throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalAptitudeLevelIsLessThenMinLevelForAthlete, IllegalIntelligenceValueIsEqualOrOverMaxTotal, IllegalAptitudeValueIsLessThenTheGap {
+        //Arrange
+		int ConcentrationLevelTooLow = 15;
+		IFighter fighter = new Mage(ANY_NAME, ANY_NBOFHP, ANY_MAGE_STRENGHT, ANY_MAGE_DEXTERITY, ANY_MAGE_INTELLIGENCE, 15, skill1, skill2);
+
+		//act
+		fighter.getConcentration();
+	}*/
+	
+
 	
 }

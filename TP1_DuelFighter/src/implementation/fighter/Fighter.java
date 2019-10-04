@@ -25,10 +25,10 @@ public abstract class Fighter implements IFighter {
 	private String name;
 	protected int numberOfHp = 200;
 	protected IAptitude aptitude; 
-	int strenght;
-	int dexterity;
-	int intelligence;
-	int concentration;
+	public int strenght = 1;
+	public int dexterity = 1;
+	public int intelligence = 1;
+	int concentration = 1;
 	private ArrayList<ISkill> skillList = new ArrayList<ISkill>();
 	//public int TOO_MUCH_STRENGHT = 40;
 
@@ -60,7 +60,7 @@ public abstract class Fighter implements IFighter {
 		CalculateInitialNbOfHp();
 	}
 
-	protected void validateAttribute(int strenght, int dexterity, int intelligence, int concentration) throws IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero{
+	protected void validateAttribute(int strenght, int dexterity, int intelligence, int concentration) throws IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrOverMaxTotal{
 		validateStrenghtIsAboveZero(strenght);
 		validatedDexterityIsAboveZero(dexterity);
 		validateIntelligenceIsAboveZero(intelligence);
@@ -68,7 +68,7 @@ public abstract class Fighter implements IFighter {
 		
 		validateStrenghtEqualOrAboveMaxTotal(strenght);
 		validateDexterityEqualOrAboveMaxTotal(dexterity);
-		validateIntelligenceIsAboveZero(intelligence);
+		validateIntelligenceEqualOrAboveMaxTotal(intelligence);
 		validateConcentrationEqualOrAboveMaxTotal(concentration);
 		
 		ValidateAptitudeIsOverTheMaxCapacity();

@@ -8,6 +8,7 @@ import exception.fighter.IllegalConcentrationValueIsEqualOrOverMaxTotal;
 import exception.fighter.IllegalConcentrationValueIsEqualOrUnderZero;
 import exception.fighter.IllegalDexterityValueIsEqualOrOverMaxTotal;
 import exception.fighter.IllegalDexterityValueIsEqualOrUnderZero;
+import exception.fighter.IllegalIntelligenceValueIsEqualOrOverMaxTotal;
 import exception.fighter.IllegalIntelligenceValueIsEqualOrUnderZero;
 import exception.fighter.IllegalStrenghtValueIsEqualOrOverMaxTotal;
 import exception.fighter.IllegalStrenghtValueIsEqualOrUnderZero;
@@ -17,7 +18,7 @@ public class Warrior extends Fighter{
 	public static int maxConcentrationWarrior = 10;
 	public final static int MINIMAL_GAP = 10;
 	
-	public Warrior(String name, int numberOfHp, int strenght, int dexterity, int intelligence, int concentration, ISkill skill1, ISkill skill2) throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero {
+	public Warrior(String name, int numberOfHp, int strenght, int dexterity, int intelligence, int concentration, ISkill skill1, ISkill skill2) throws IllegalAptitudeValueIsLessThenMinGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
 		super(name, numberOfHp, strenght, dexterity, intelligence, concentration, skill1, skill2);
 		this.validateWarriorAptitude();
 		validateAttribute(strenght, dexterity, intelligence, concentration);

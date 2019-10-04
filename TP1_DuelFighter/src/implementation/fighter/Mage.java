@@ -7,6 +7,7 @@ import exception.fighter.IllegalConcentrationValueIsEqualOrOverMaxTotal;
 import exception.fighter.IllegalConcentrationValueIsEqualOrUnderZero;
 import exception.fighter.IllegalDexterityValueIsEqualOrOverMaxTotal;
 import exception.fighter.IllegalDexterityValueIsEqualOrUnderZero;
+import exception.fighter.IllegalIntelligenceValueIsEqualOrOverMaxTotal;
 import exception.fighter.IllegalIntelligenceValueIsEqualOrUnderZero;
 import exception.fighter.IllegalStrenghtValueIsEqualOrOverMaxTotal;
 import exception.fighter.IllegalStrenghtValueIsEqualOrUnderZero;
@@ -17,19 +18,19 @@ public class Mage extends Fighter{
 	private int concentration;
 	public final static int GAP = 15;
 	
-	public Mage(String name, int numberOfHp, int strenght, int dexterity, int intelligence, int concentration, ISkill skill1, ISkill skill2) throws IllegalAptitudeValueIsLessThenTheGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero {
+	public Mage(String name, int numberOfHp, int strenght, int dexterity, int intelligence, int concentration, ISkill skill1, ISkill skill2) throws IllegalAptitudeValueIsLessThenTheGap, IllegalStrenghtValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrUnderZero, IllegalConcentrationValueIsEqualOrUnderZero, IllegalStrenghtValueIsEqualOrOverMaxTotal, IllegalDexterityValueIsEqualOrOverMaxTotal, IllegalConcentrationValueIsEqualOrOverMaxTotal, IllegalAptitudeIsOverMaxTotal, IllegalDexterityValueIsEqualOrUnderZero, IllegalIntelligenceValueIsEqualOrOverMaxTotal {
 		super(name, numberOfHp, strenght, dexterity, intelligence, concentration, skill1, skill2);
 		this.validateMageAptitude();
 		validateAttribute(strenght, dexterity, intelligence, concentration);
 	}
 	
 	public int getIntelligence() {
-		intelligence = Math.max(this.getStrength(), this.getDexterity()) + 15;
+		intelligence = Math.max(this.getStrength(), this.getDexterity()) + GAP;
 		return this.intelligence;
 	}
 	
 	public int getConcentration() {
-		concentration = Math.max(this.getStrength(), this.getDexterity()) + 15;
+		concentration = Math.max(this.getStrength(), this.getDexterity()) + GAP;
 		return this.concentration;
 	}
 	
@@ -39,12 +40,12 @@ public class Mage extends Fighter{
 	}
 	
 	private void validateIntelligenceValueIsEqualsTheGapValueWithDexterityOrStrenght() throws IllegalAptitudeValueIsLessThenTheGap {
-		if(this.getIntelligence() < Math.max(this.getStrength(), this.getDexterity()) + 15) throw new IllegalAptitudeValueIsLessThenTheGap();
+		if(this.getIntelligence() < Math.max(this.getStrength(), this.getDexterity()) + GAP) throw new IllegalAptitudeValueIsLessThenTheGap();
 		
 	}
 
 	private void validateConcentrationValueIsEqualsTheGapValueWithDexterityOrStrenght() throws IllegalAptitudeValueIsLessThenTheGap {
-		if(this.getIntelligence() < Math.max(this.getStrength(), this.getDexterity()) + 15) throw new IllegalAptitudeValueIsLessThenTheGap();
+		if(this.getConcentration() < Math.max(this.getStrength(), this.getDexterity()) + GAP) throw new IllegalAptitudeValueIsLessThenTheGap();
 		
 	}
 
