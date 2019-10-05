@@ -1,38 +1,60 @@
 package implementation.fighter;
 
-//import java.util.ArrayList;
+
+import java.util.ArrayList;
+import abstracts.fighter.IAttack;
 
 import abstracts.fighter.IFighter;
+import abstracts.fighter.ISkill;
+import exception.fighter.IllegalAbilityValueException;
+import exception.fighter.IllegalAttackSkillException;
 
-public class Fighter implements IFighter {
-	private String name;
-	private int id;
-	/*private int strenght;
-	private int dexterity;
-	private int intelligence;
-	private int concentration;*/
-	Aptitude aptitude; 
-
+public abstract class Fighter implements IFighter {
 	
-	//il va falloir faire un objet avec le nom au complet
-	//Il doit avoir un nom et des aptitude
-	public Fighter(String name, int id, Aptitude aptitude ) {
+	public static int INITIAL_NUMBER_OF_HP = 200;
+	private String name;
+	protected int numberOfHp = 200;
+	public int strenght = 1;
+	public int dexterity = 1;
+	public int intelligence = 1;
+	int concentration = 1;
+	private ArrayList<ISkill> skillList;
+
+	public Fighter(String name, int strenght, int dexterity, int intelligence, int concentration, ISkill skill1, ISkill skill2) {
 		this.name = name;
-		this.id = id;
-		this.aptitude = aptitude;
+		this.strenght = strenght;
+		this.dexterity = dexterity;
+		this.intelligence = intelligence;
+		this.concentration = concentration;
+		
+		this.numberOfHp = CalculateInitialNbOfHp(strenght, dexterity, intelligence, concentration);
+		
+		this.skillList = new ArrayList<ISkill>();
+		this.skillList.add(skill1);
+		this.skillList.add(skill2);
 	}
 
+	public void validateAbility(int strength, int dexterity, int intelligence, int concentration) {
+		if((strength + dexterity + intelligence + concentration) > 100) throw new IllegalAbilityValueException(IllegalAbilityValueException.WRONG_BASE_STATS);
+		if(strength < 0 || dexterity < 0 || intelligence < 0 || concentration < 0) throw new IllegalAbilityValueException(IllegalAbilityValueException.TOO_LOW_ABILITY_STATS);
+	}
+	
+//Fighter
+	
 	public String getName() {
 		return name;
 	}
-
-	public int getFighterId() {
-		return this.id;
+	
+	public int getNumberOfHp() {
+		return this.numberOfHp;
 	}
 	
-	public Aptitude getAptitude() {
-		return this.aptitude;
-	}	
+	public int CalculateInitialNbOfHp(int strenght, int dexterity, int intelligence, int concentration){
+		this.numberOfHp = INITIAL_NUMBER_OF_HP - (strenght + dexterity + intelligence + concentration);
+		
+		return numberOfHp;
+	}
+	
 	public int getStrength() {
 		return this.strenght;
 	}
@@ -48,101 +70,46 @@ public class Fighter implements IFighter {
 	public int getConcentration() {
 		return this.concentration;
 	}
-}
-
-/*
-Pour tous les combattants :
-		force + dextérité + intelligence + concentration <= 100
-2. Pour un guerrier :
-		force >= dextérité + 10 >= intelligence + 10 >= concentration
-3. Pour un athlète :
-		force >= 20
-		dextérité >= 20
-		intelligence >= 20
-		concentration >= 20
-4. Pour un magicien :
-		intelligence >= max(force, dextérité) + 15
-		concentration >= max(force, dextérité) + 15
-		
-5. sPoint de vie
-	Nombre de points de vie = 200 – (force + dextérité + intelligence + concentration)
-*/
-/*
-package implementation.fighter;
-
-//import java.util.ArrayList;
-
-import abstracts.fighter.IFighter;
-
-public class Fighter implements IFighter {
-	private String name;
-	private int id;
-	/*private int strenght;
-	private int dexterity;
-	private int intelligence;
-	private int concentration;
-	Aptitude aptitude; 
-
 	
-	//il va falloir faire un objet avec le nom au complet
-	//Il doit avoir un nom et des aptitude
-	public Fighter(String name, int id, Aptitude aptitude ) {
-		this.name = name;
-		this.id = id;
-		this.aptitude = aptitude;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public int getFighterId() {
-		return this.id;
+	//Skill
+	
+	public ArrayList<ISkill> getSkillList(){
+		return this.skillList;
 	}
 	
-	public Aptitude getAptitude() {
-		return this.aptitude;
-	}
-
-	public int getStrength() {
-		return this.strenght;
+	public void addSkill(ISkill skill){
+		skillList.add(skill);
 	}
 	
-	public int getDexterity() {
-		return this.dexterity;
+	public void removeSkill(ISkill skill){
+		skillList.remove(skill);
 	}
 	
-	public int getIntelligence() {
-		return this.intelligence;
+	public ISkill getSkill(int index) {
+		return this.skillList.get(index);
 	}
 	
-	public int getConcentration() {
-		return this.concentration;
+	public int getSkillValue(ISkill skill) {
+		return skill.getSkillValue();
+	}
+	
+	public int getSkillPower(ISkill skill) {
+		return skill.getPower(this);
+	}
+	
+	public String getSkillName(ISkill skill) {
+		return skill.getName();
+	}
+	
+	public ISkill getAttackSkill(int index){
+		if(!(this.skillList.get(index) instanceof IAttack)) throw new IllegalAttackSkillException(IllegalAttackSkillException.WRONG_SKILL_TYPE);
+		ISkill attackCapacity = this.skillList.get(index);
+		return attackCapacity;
+	}
+	
+	public void heal(ISkill healingSkill) {
+		int healingEffects = getSkillPower(healingSkill);
+		this.numberOfHp += healingEffects;
+		this.skillList.remove(healingSkill);
 	}
 }
-
-/*
-Pour tous les combattants :
-
-		force + dextérité + intelligence + concentration <= 100
-
-2. Pour un guerrier :
-
-		force >= dextérité + 10 >= intelligence + 10 >= concentration
-
-3. Pour un athlète :
-
-		force >= 20
-		dextérité >= 20
-		intelligence >= 20
-		concentration >= 20
-
-4. Pour un magicien :
-
-		intelligence >= max(force, dextérité) + 15
-		concentration >= max(force, dextérité) + 15
-		
-5. sPoint de vie
-
-	Nombre de points de vie = 200 – (force + dextérité + intelligence + concentration)
-*/
