@@ -16,6 +16,6 @@ public class Mage extends Fighter{
 	}
 
 	public void validateMageAbility(int strength, int dexterity, int intelligence, int concentration){
-		if(intelligence < (Math.max(strength, dexterity) + 15) || concentration < (Math.max(strength, dexterity) + 15)) throw new IllegalAbilityValueException(IllegalAbilityValueException.WRONG_MAGICIEN_STATS);
+		if(intelligence < (Math.max(strength, dexterity) + 15) || concentration < (Math.max(strength, dexterity) + 15)) throw new IllegalAbilityValueException(IllegalAbilityValueException.WRONG_MAGE_STATS);
 	}
 }

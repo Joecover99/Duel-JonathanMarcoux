@@ -121,8 +121,10 @@ public class FighterTest {
     private FighterSpy fighterSpyWinner;
     private FighterSpy fighterSpyLoser;
     
-    
+//Infirmary
+	private FighterSpy fighterSpy;
 
+//Fighter
 	@Before
 	public void setUpFighter() {
 		skillDummy1 = new SkillDummy(ANY_SKILL_VALUE, ANY_SKILL_NAME);
@@ -135,6 +137,7 @@ public class FighterTest {
 		expectedSkillList.add(skillDummy2);
 	}
 	
+//Skill
 	@Before
 	public void setUSkill(){
 		newSword = SkillFactory.SkillCreator(SkillType.Sword, ANY_SKILL_VALUE, SWORD_SKILL_NAME);
@@ -146,6 +149,7 @@ public class FighterTest {
 		fighterStubs = new FighterStubs(FIGHTER_STUBS_NAME, FIGHTER_STUBS_STRENGTH, FIGHTER_STUBS_DEXTERITY, FIGHTER_STUBS_INTELLIGENCE, FIGHTER_STUBS_CONCENTRATION, newSword, newShield);
 	}
 
+//Duel
     @Before
     public void setUpDuel() {
     	skill1 = SkillFactory.SkillCreator(skillType, SKILL_EFFICIENCY,SKILL_NAME);
@@ -157,6 +161,16 @@ public class FighterTest {
         fighterSpyWinner =  new FighterSpy(DUMMY_FIGHTER_NAME,DUMMY_FIGHTER_FORCE,DUMMY_FIGHTER_DEXTERITE,DUMMY_FIGHTER_INTELLIGENCE,DUMMY_FIGHTER_CONCENTRATION, skill1 , skill2);
         fighterSpyLoser =  new FighterSpy(DUMMY_FIGHTER_NAME,DUMMY_FIGHTER_FORCE,DUMMY_FIGHTER_DEXTERITE,DUMMY_FIGHTER_INTELLIGENCE,DUMMY_FIGHTER_CONCENTRATION, skill1 , skill2);
     }
+	
+//Infirmary
+	@Before
+	public void setUp() {
+		skillDummy1 = new SkillDummy(ANY_SKILL_VALUE, ANY_SKILL_NAME);
+		skillDummy2 = new SkillDummy(ANY_SKILL_VALUE, ANY_SKILL_NAME);
+		newHealingSpell = SkillFactory.SkillCreator(SkillType.HealingSpell, ANY_SKILL_VALUE, HEALING_SPELL_SKILL_NAME);
+		fighterStubs = new FighterStubs(FIGHTER_STUBS_NAME, FIGHTER_STUBS_STRENGTH, FIGHTER_STUBS_DEXTERITY, FIGHTER_STUBS_INTELLIGENCE, FIGHTER_STUBS_CONCENTRATION, newHealingSpell, skillDummy2);
+		fighterSpy = new FighterSpy(DUMMY_FIGHTER_NAME,DUMMY_FIGHTER_FORCE,DUMMY_FIGHTER_DEXTERITE,DUMMY_FIGHTER_INTELLIGENCE,DUMMY_FIGHTER_CONCENTRATION, skillDummy1 , skillDummy2);
+	}
 	
 //Fighter
     
@@ -453,6 +467,30 @@ public class FighterTest {
         duel.fight(fighter2.getSkill(0), surrender);
         assertEquals(newSkillCount, (duel.fightWinner.getSkillList()).size());
     }
+    
+//Infirmary
+
+	@Test
+	public void WHEN_HealIsCalled_THEN_HealFunctionIsCalled() {
+		fighterSpy.heal(newHealingSpell);
+		boolean isCalled = true;
+		assertEquals(isCalled, spy.FighterSpy.healIsCalled);
+	}
+	
+	@Test
+	public void WHEN_HealIsCalled_THEN_FighterIsHeal() {
+		fighterStubs.heal(newHealingSpell);
+		int ExpectedHealPoints = 200 - FIGHTER_STUBS_STRENGTH - FIGHTER_STUBS_DEXTERITY - FIGHTER_STUBS_INTELLIGENCE - FIGHTER_STUBS_CONCENTRATION + newHealingSpell.getPower(fighterStubs);
+		assertEquals(ExpectedHealPoints, FighterStubs.healthPoints);
+	}
+	
+	@Test
+	public void WHEN_HealIsCalled_THEN_HealingSkillIsRemovedFromSkillList() {
+		fighterStubs.heal(newHealingSpell);
+		int ExpectedArraySize = 1;
+		assertEquals(ExpectedArraySize, (fighterStubs.getSkillList()).size());
+	}
+	
     
 	
 }

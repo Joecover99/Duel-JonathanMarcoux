@@ -8,7 +8,7 @@ public class FighterFactory {
 
 		public enum FighterType{
 			Athlete,
-			 Mage,
+			Mage,
 			Warrior,
 		}
 		
