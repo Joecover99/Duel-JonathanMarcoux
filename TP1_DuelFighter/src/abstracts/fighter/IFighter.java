@@ -30,5 +30,11 @@ public interface IFighter {
 	public String getSkillName(ISkill skill);
 	
 	public int getSkillValue(ISkill skill);
+
+	public void duelWin();
+	
+	public void duelLost();
+	
+	public void fightPenalty(int healthPenalty);
 }
 
