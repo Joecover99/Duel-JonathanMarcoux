@@ -14,7 +14,7 @@ public abstract class Fighter implements IFighter {
 	public static int INITIAL_NUMBER_OF_HP = 200;
 	private String name;
 	protected int numberOfHp = 200;
-	public int strenght = 1;
+	public int strength = 1;
 	public int dexterity = 1;
 	public int intelligence = 1;
 	int concentration = 1;
@@ -22,7 +22,7 @@ public abstract class Fighter implements IFighter {
 
 	public Fighter(String name, int strenght, int dexterity, int intelligence, int concentration, ISkill skill1, ISkill skill2) {
 		this.name = name;
-		this.strenght = strenght;
+		this.strength = strenght;
 		this.dexterity = dexterity;
 		this.intelligence = intelligence;
 		this.concentration = concentration;
@@ -56,7 +56,7 @@ public abstract class Fighter implements IFighter {
 	}
 	
 	public int getStrength() {
-		return this.strenght;
+		return this.strength;
 	}
 	
 	public int getDexterity() {
@@ -103,13 +103,35 @@ public abstract class Fighter implements IFighter {
 	
 	public ISkill getAttackSkill(int index){
 		if(!(this.skillList.get(index) instanceof IAttack)) throw new IllegalAttackSkillException(IllegalAttackSkillException.WRONG_SKILL_TYPE);
-		ISkill attackCapacity = this.skillList.get(index);
-		return attackCapacity;
+		ISkill attackSkill = this.skillList.get(index);
+		return attackSkill;
 	}
 	
 	public void heal(ISkill healingSkill) {
 		int healingEffects = getSkillPower(healingSkill);
 		this.numberOfHp += healingEffects;
 		this.skillList.remove(healingSkill);
+	}
+	
+//Duel
+	
+	public void duelWin() {
+		this.strength++;
+		this.dexterity++;
+		this.intelligence++;
+		this.concentration++;
+		this.numberOfHp++;
+	}
+	
+	public void duelLost() {
+		this.strength--;
+		this.dexterity--;
+		this.intelligence--;
+		this.concentration--;
+		this.numberOfHp--;
+	}
+	
+	public void fightPenalty(int healthPenalty) {
+		this.numberOfHp = this.numberOfHp - healthPenalty;
 	}
 }

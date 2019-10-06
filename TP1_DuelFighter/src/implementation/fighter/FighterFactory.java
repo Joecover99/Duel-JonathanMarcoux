@@ -8,8 +8,8 @@ public class FighterFactory {
 
 		public enum FighterType{
 			Athlete,
-			Magicien,
-			Warrior
+			 Mage,
+			Warrior,
 		}
 		
 		public static IFighter FighterCreator(FighterType fighterType, String name, int strength, int dexterity, int intelligence, int concentration, ISkill skill1, ISkill skill2) {
@@ -17,7 +17,7 @@ public class FighterFactory {
 				case Athlete : 
 					return new Athlete(name, strength, dexterity, intelligence, concentration, skill1, skill2);
 					
-				case Magicien : 
+				case  Mage : 
 					return new Mage(name, strength, dexterity, intelligence, concentration, skill1, skill2);
 				
 				case Warrior : 
