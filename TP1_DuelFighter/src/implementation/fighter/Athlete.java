@@ -11,7 +11,7 @@ public class Athlete extends Fighter{
 		validateAthleteAbility(strength, dexterity, intelligence, concentration);
 	}
 	
-	public void validateAthleteAbility(int strength, int dexterity, int intelligence, int concentration) {
+	public void validateAthleteAbility(int strength, int dexterity, int intelligence, int concentration) {//MS La validation doit être private et appelée dans le constructeur.
 		if(strength < ATHLETE_STATS_STEP || dexterity < ATHLETE_STATS_STEP || intelligence < ATHLETE_STATS_STEP || concentration < ATHLETE_STATS_STEP) throw new IllegalAbilityValueException(IllegalAbilityValueException.WRONG_ATHLETE_STATS);
 	}
 

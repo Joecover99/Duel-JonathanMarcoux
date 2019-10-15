@@ -7,7 +7,7 @@ public class Infirmary {
 	private IFighter fighter;
 	private IHeal healingSkill;
 	
-	public Infirmary(IFighter fighter, IHeal skill) {
+	public Infirmary(IFighter fighter, IHeal skill) {//MS On crée l'infirmerie et ensuite on appelle heal(Ifighter, IHeal)
 		this.fighter = fighter;
 		this.healingSkill = skill;
 	}

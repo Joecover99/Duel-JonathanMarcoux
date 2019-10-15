@@ -129,11 +129,11 @@ public class FighterTest {
 	public void setUpFighter() {
 		skillDummy1 = new SkillDummy(ANY_SKILL_VALUE, ANY_SKILL_NAME);
 		skillDummy2 = new SkillDummy(ANY_SKILL_VALUE, ANY_SKILL_NAME);
-		skillDummy3 = new SkillDummy(ANY_SKILL_VALUE, ANY_SKILL_NAME);
+		skillDummy3 = new SkillDummy(ANY_SKILL_VALUE, ANY_SKILL_NAME); //MS il faut utiliser un Mock pour tester la classe abstraite
 		newWarriorFighter = FighterFactory.FighterCreator(FighterType.Warrior, ANY_WARRIOR_NAME, ANY_WARRIOR_STRENGTH, ANY_WARRIOR_DEXTERITY, ANY_WARRIOR_INTELLIGENCE, ANY_WARRIOR_CONCENTRATION, skillDummy1, skillDummy2);
 		newAthleteFighter = FighterFactory.FighterCreator(FighterType.Athlete, ANY_ATHLETE_NAME, ANY_ATHLETE_STRENGTH, ANY_ATHLETE_DEXTERITY, ANY_ATHLETE_INTELLIGENCE, ANY_ATHLETE_CONCENTRATION, skillDummy1, skillDummy2);
 		newMageFighter = FighterFactory.FighterCreator(FighterType.Mage, ANY_MAGE_NAME, ANY_MAGE_STRENGTH, ANY_MAGE_DEXTERITY, ANY_MAGE_INTELLIGENCE, ANY_MAGE_CONCENTRATION, skillDummy1, skillDummy2);
-		expectedSkillList.add(skillDummy1);
+		expectedSkillList.add(skillDummy1);//MS La classe Fighter ne doit pas connaître l'existence de ses enfants. La classe de tests n'est pas indépendante.
 		expectedSkillList.add(skillDummy2);
 	}
 	

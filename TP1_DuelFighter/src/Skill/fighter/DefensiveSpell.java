@@ -4,7 +4,7 @@ import abstracts.fighter.IFighter;
 import abstracts.fighter.IParry;
 import abstracts.fighter.ISkill;
 
-public class DefensiveSpell extends Skill implements ISkill, IParry {
+public class DefensiveSpell extends Skill implements ISkill, IParry {//MS Pas besoin d'implémenter ISkill puisqu'elle hérite déjà de Skill.
 
 	final int SPELL_MULTIPLIER = 3;
 	
@@ -12,7 +12,7 @@ public class DefensiveSpell extends Skill implements ISkill, IParry {
 		super(spellEfficiency, name);
 	}
 	
-	public int getParryPower(IFighter fighter) {
+	public int getParryPower(IFighter fighter) {//MS Pas utile ici, on aurait pu mettre le code dans getPower(). Sinon, il faut que ce soit private.
 		return ((this.getSkillValue() * fighter.getIntelligence() / 100) * SPELL_MULTIPLIER);
 	}
 	
